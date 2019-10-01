@@ -2,7 +2,7 @@
 
 ## How to run this code?
 1. Run git clone https://github.com/uic-evl/cs529-vds.git
-2. Start an http server: python -m http.sever 8888
+2. Start an http server (with python3): python -m http.server 8888
 3. Go to http://localhost:8888. You should see a cylinder wireframe.
 ![alt text][img_cylinder]
 
