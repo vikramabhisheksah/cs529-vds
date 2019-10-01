@@ -4,7 +4,7 @@
 1. Run git clone https://github.com/uic-evl/cs529-vds.git
 2. Start an http server: python -m http.sever 8888
 3. Go to http://localhost:8888. You should see a cylinder wireframe.
-![alt cylinder][img_cylinders]
+![alt text][img_cylinder]
 
 ## Data
 You can download the complete dataset from [here](https://drive.google.com/file/d/1tzopK6xqQkefopSAw1ik5rXMVCJWS978/view). The base code only includes the 058.csv file.
@@ -12,4 +12,6 @@ You can download the complete dataset from [here](https://drive.google.com/file/
 ## Acknowledgements
 [Andrew Burks](https://andrewtburks.dev/) for creating the starter code.
 
-[img_cylinder]: https://github.com/uic-evl/cs529-vds/tree/master/imgs/cylinder.png "Cylinder"
+[Scivis Contest](https://www.uni-kl.de/sciviscontest/)
+
+[img_cylinder]: https://github.com/uic-evl/cs529-vds/blob/master/imgs/cylinder.png "Cylinder"
