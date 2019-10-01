@@ -1,21 +1,22 @@
+/* author: Andrew Burks */
 "use strict";
 
 /* Get or create the application global variable */
 var App = App || {};
 
-var ParticleSystem = function() {
+const ParticleSystem = function() {
 
     // setup the pointer to the scope 'this' variable
-    var self = this;
+    const self = this;
 
     // data container
-    var data = [];
+    const data = [];
 
     // scene graph group for the particle system
-    var sceneObject = new THREE.Group();
+    const sceneObject = new THREE.Group();
 
     // bounds of the data
-    var bounds = {};
+    const bounds = {};
 
     // create the containment box.
     // This cylinder is only to guide development.
@@ -23,13 +24,13 @@ var ParticleSystem = function() {
     self.drawContainment = function() {
 
         // get the radius and height based on the data bounds
-        var radius = (bounds.maxX - bounds.minX)/2.0 + 1;
-        var height = (bounds.maxY - bounds.minY) + 1;
+        const radius = (bounds.maxX - bounds.minX)/2.0 + 1;
+        const height = (bounds.maxY - bounds.minY) + 1;
 
         // create a cylinder to contain the particle system
-        var geometry = new THREE.CylinderGeometry( radius, radius, height, 32 );
-        var material = new THREE.MeshBasicMaterial( {color: 0xffff00, wireframe: true} );
-        var cylinder = new THREE.Mesh( geometry, material );
+        const geometry = new THREE.CylinderGeometry( radius, radius, height, 32 );
+        const material = new THREE.MeshBasicMaterial( {color: 0xffff00, wireframe: true} );
+        const cylinder = new THREE.Mesh( geometry, material );
 
         // add the containment to the scene
         sceneObject.add(cylinder);
@@ -39,7 +40,8 @@ var ParticleSystem = function() {
     self.createParticleSystem = function() {
 
         // use self.data to create the particle system
-
+        // draw your particle system here!
+        
     };
 
     // data loading function
@@ -86,7 +88,7 @@ var ParticleSystem = function() {
     };
 
     // publicly available functions
-    var publiclyAvailable = {
+    self.public = {
 
         // load the data and setup the system
         initialize: function(file){
@@ -99,6 +101,6 @@ var ParticleSystem = function() {
         }
     };
 
-    return publiclyAvailable;
+    return self.public;
 
 };

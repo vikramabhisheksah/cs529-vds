@@ -12,11 +12,11 @@ var App = App || {};
     /* Entry point of the application */
     App.start = function()
     {
-        // create a new scene
+        // create a new scene, pass options as dictionary
         App.scene = new Scene({container:"scene"});
 
         // initialize the particle system
-        var particleSystem = new ParticleSystem();
+        const particleSystem = new ParticleSystem();
         particleSystem.initialize('data/058.csv');
 
         //add the particle system to the scene

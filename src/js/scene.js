@@ -1,17 +1,19 @@
+/* author: Andrew Burks */
 "use strict";
+/* Create a Threejs scene for the application */
 
 /* Get or create the application global variable */
 var App = App || {};
 
 /* Create the scene class */
-var Scene = function(options) {
+const Scene = function(options) {
 
     // setup the pointer to the scope 'this' variable
-    var self = this;
+    const self = this;
 
     // scale the width and height to the screen size
-    var width = d3.select('.particleDiv').node().clientWidth;
-    var height = width * 0.85;
+    const width = d3.select('.particleDiv').node().clientWidth;
+    const height = width * 0.85;
 
     // create the scene
     self.scene = new THREE.Scene();
@@ -22,7 +24,7 @@ var Scene = function(options) {
     self.camera.lookAt(0,0,0);
 
     // Add a directional light to show off the objects
-    var light = new THREE.DirectionalLight( 0xffffff, 1.5);
+    const light = new THREE.DirectionalLight( 0xffffff, 1.5);
     // Position the light out from the scene, pointing at the origin
     light.position.set(0,2,20);
     light.lookAt(0,0,0);
@@ -38,9 +40,13 @@ var Scene = function(options) {
     self.renderer.setSize( width, height );
     document.getElementById(options.container).appendChild( self.renderer.domElement );
 
-    /* add the checkboard floor to the scene */
 
-    self.public =  {
+    // expose the public functions
+    // Try on the console App.scene and you should see these 
+    // three functions. Every other element acts as a private
+    // attribute or function. For more information, check
+    // javascript module patterns.
+    self.public = {
 
         resize: function() {
 
