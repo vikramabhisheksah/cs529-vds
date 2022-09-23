@@ -1,67 +1,58 @@
-/* author: Andrew Burks */
-"use strict";
-/* Create a Threejs scene for the application */
 
-/* Get or create the application global variable */
-var App = App || {};
+// Canvas
+const canvas = document.querySelector('canvas.scene');
 
-/* Create the scene class */
-const Scene = function(options) {
+// Scene
+const scene = new THREE.Scene();
 
-    // setup the pointer to the scope 'this' variable
-    const self = this;
+// Lights
+const light = new THREE.DirectionalLight(0xffffff, 0.1);
+light.position.set(0,2,20);
+scene.add(light);
 
-    // scale the width and height to the screen size
-    const width = d3.select('.particleDiv').node().clientWidth;
-    const height = width * 0.85;
-
-    // create the scene
-    self.scene = new THREE.Scene();
-
-    // setup the camera
-    self.camera = new THREE.PerspectiveCamera( 75, width / height, 0.1, 1000 );
-    self.camera.position.set(0,2,20);
-    self.camera.lookAt(0,0,0);
-
-    // Add a directional light to show off the objects
-    const light = new THREE.DirectionalLight( 0xffffff, 1.5);
-    // Position the light out from the scene, pointing at the origin
-    light.position.set(0,2,20);
-    light.lookAt(0,0,0);
-
-    // add the light to the camera and the camera to the scene
-    self.camera.add(light);
-    self.scene.add(self.camera);
-
-    // create the renderer
-    self.renderer = new THREE.WebGLRenderer();
-
-    // set the size and append it to the document
-    self.renderer.setSize( width, height );
-    document.getElementById(options.container).appendChild( self.renderer.domElement );
-
-
-    // expose the public functions
-    // Try on the console App.scene and you should see these 
-    // three functions. Every other element acts as a private
-    // attribute or function. For more information, check
-    // javascript module patterns.
-    self.public = {
-
-        resize: function() {
-
-        },
-
-        addObject: function(obj) {
-            self.scene.add( obj );
-        },
-
-        render: function() {
-            requestAnimationFrame( self.public.render );
-            self.renderer.render( self.scene, self.camera );
-        }
-
-    };
-
-    return self.public;
+// Sizes
+const sizes = {
+    width: window.innerWidth * 0.65,
+    height: window.innerHeight * 0.85
 };
+
+window.addEventListener('resize', () =>
+{
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+});
+
+
+// Camera setup
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000 );
+camera.position.set(0,2,20);
+camera.lookAt(0,0,0);
+scene.add(camera);
+
+
+
+//  Renderer
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas
+});
+renderer.setSize(sizes.width, sizes.height);
+// sets up the background color
+renderer.setClearColor(0x000000);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+
+// Animate
+const animate = () =>
+{
+    renderer.render(scene, camera);
+
+    // Call animate for each frame
+    window.requestAnimationFrame(animate);
+};
+
+animate();
