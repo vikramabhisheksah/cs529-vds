@@ -1,5 +1,8 @@
 # Homework 3 Flow Visualization with Three.js
 
+## Link to the Visualization
+https://vikramabhisheksah.github.io/cs529-vds
+
 ## How to run this code?
 1. Run git clone https://github.com/uic-evl/cs529-vds.git
 2. Start an http server (with python3): python -m http.server 8888
